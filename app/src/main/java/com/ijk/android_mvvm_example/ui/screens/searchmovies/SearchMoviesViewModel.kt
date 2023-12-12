@@ -1,12 +1,12 @@
 package com.ijk.android_mvvm_example.ui.screens.searchmovies
 
 import android.app.Application
+import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.viewModelScope
-import com.ijk.android_mvvm_example.core.logget
-import com.ijk.android_mvvm_example.core.ui.BaseState
+import com.ijk.android_mvvm_example.core.network.Source
 import com.ijk.android_mvvm_example.core.viewmodel.BaseStateViewModel
-import com.ijk.android_mvvm_example.core.viewmodel.BaseViewModel
 import com.ijk.android_mvvm_example.usecases.SearchMoviesUseCase
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
 class SearchMoviesViewModel(
@@ -18,12 +18,24 @@ class SearchMoviesViewModel(
 
     private var page = 1
 
-    fun search() {
-        uiState.isLoading = true
+    init {
+        viewModelScope.launch {
+            snapshotFlow { uiState.searchQuery }
+                .debounce(1_000)
+                .collect {
+                    val query = it.trim()
+                    if (query.length >= 3) {
+                        search(query)
+                    }
+                }
+        }
+    }
+
+    private fun search(query: String) {
+        uiState.handleMovies(Source.Processing())
         launchWithSafeNetwork {
-            val source = searchMoviesUseCase("one", page)
-            logget(source)
-            uiState.isLoading = false
+            val source = searchMoviesUseCase(query, page)
+            uiState.handleMovies(source)
         }
     }
 }
