@@ -36,7 +36,7 @@ object SearchMoviesScreen : BaseScreen() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Screen(viewModel: SearchMoviesViewModel = koinViewModel()) {
-        val state: SearchMoviesState = viewModel.getState()
+        val state = viewModel.rememberState { SearchMoviesState(it) }
 
         val itemWidthDp = (LocalConfiguration.current.screenWidthDp / 2).dp - 4.dp
 

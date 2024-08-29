@@ -7,17 +7,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.CoroutineScope
 
-abstract class BaseState {
-
-    lateinit var context: Context
-        private set
+abstract class BaseState(val context: Context) {
     lateinit var scope: CoroutineScope
         private set
 
     @Composable
     open fun InitComposable() {
         scope = rememberCoroutineScope()
-        context = LocalContext.current
     }
 
     fun showError(error: Throwable?) {
