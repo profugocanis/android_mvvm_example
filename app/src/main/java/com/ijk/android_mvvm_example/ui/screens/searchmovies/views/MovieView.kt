@@ -1,4 +1,4 @@
-package com.ijk.android_mvvm_example.ui.screens.searchmovies
+package com.ijk.android_mvvm_example.ui.screens.searchmovies.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

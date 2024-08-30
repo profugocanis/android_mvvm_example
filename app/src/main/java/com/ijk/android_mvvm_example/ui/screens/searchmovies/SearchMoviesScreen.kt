@@ -29,6 +29,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.ijk.android_mvvm_example.core.ui.BaseScreen
 import com.ijk.android_mvvm_example.ui.dialogs.LoadingDialog
+import com.ijk.android_mvvm_example.ui.screens.searchmovies.views.MovieView
 import org.koin.androidx.compose.koinViewModel
 
 object SearchMoviesScreen : BaseScreen() {

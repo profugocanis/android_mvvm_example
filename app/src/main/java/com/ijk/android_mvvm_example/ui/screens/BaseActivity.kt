@@ -1,4 +1,4 @@
-package com.ijk.android_mvvm_example.ui.activities
+package com.ijk.android_mvvm_example.ui.screens
 
 import androidx.activity.ComponentActivity
 import com.ijk.android_mvvm_example.App

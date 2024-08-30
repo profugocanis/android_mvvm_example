@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.ijk.android_mvvm_example.core.ui.BaseScreen
-import com.ijk.android_mvvm_example.ui.activities.SearchMoviesActivity
+import com.ijk.android_mvvm_example.ui.screens.searchmovies.SearchMoviesActivity
 
 object MainScreen : BaseScreen() {
 

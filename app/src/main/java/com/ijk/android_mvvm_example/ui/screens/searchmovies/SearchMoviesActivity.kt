@@ -1,15 +1,14 @@
-package com.ijk.android_mvvm_example.ui.activities
+package com.ijk.android_mvvm_example.ui.screens.searchmovies
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.ijk.android_mvvm_example.ui.screens.searchmovies.SearchMoviesScreen
+import com.ijk.android_mvvm_example.ui.screens.BaseActivity
 import com.ijk.android_mvvm_example.ui.theme.Android_mvvm_exampleTheme
 
 class SearchMoviesActivity : BaseActivity() {
