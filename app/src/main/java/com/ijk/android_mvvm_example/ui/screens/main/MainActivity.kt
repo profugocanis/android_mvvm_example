@@ -7,12 +7,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ijk.android_mvvm_example.ui.screens.BaseActivity
+import com.ijk.android_mvvm_example.ui.screens.searchmovies.SearchMoviesActivity
 import com.ijk.android_mvvm_example.ui.theme.Android_mvvm_exampleTheme
 
 class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SearchMoviesActivity.open(this)
         setContent {
             Android_mvvm_exampleTheme {
                 Surface(

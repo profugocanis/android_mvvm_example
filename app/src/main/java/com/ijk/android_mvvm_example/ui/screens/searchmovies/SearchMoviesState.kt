@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SearchMoviesState(context: Context, val scope: CoroutineScope) : BaseState(context) {
 
-    var searchQuery by mutableStateOf("one")
+    var searchQuery by mutableStateOf("")
     val scrollState = LazyGridState()
 
     var isLoading by mutableStateOf(false)

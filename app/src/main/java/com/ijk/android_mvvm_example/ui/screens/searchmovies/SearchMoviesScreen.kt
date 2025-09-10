@@ -111,13 +111,15 @@ object SearchMoviesScreen : BaseScreen() {
                             state.scrollToTop()
                         },
                         modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .size(80.dp)
                             .padding(16.dp)
+                            .align(Alignment.BottomEnd)
+                            .size(56.dp)
                     ) {
                         Image(
                             painter = rememberVectorPainter(Icons.Default.KeyboardArrowUp),
-                            contentDescription = null
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(32.dp)
                         )
                     }
                 }

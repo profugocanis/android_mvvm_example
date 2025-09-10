@@ -18,6 +18,7 @@ class SearchMoviesViewModel(
     private var page = 1
 
     override fun onInitState() {
+        search("batman")
         viewModelScope.launch {
             snapshotFlow { state.searchQuery }
                 .debounce(1_000)
