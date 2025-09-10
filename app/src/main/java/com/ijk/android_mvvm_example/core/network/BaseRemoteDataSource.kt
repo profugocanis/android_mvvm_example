@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import com.google.gson.Gson
 import com.google.gson.JsonElement
+import com.ijk.android_mvvm_example.core.logget
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.cancelChildren
@@ -23,20 +24,17 @@ abstract class BaseRemoteDataSource {
         private val threadDispatcher = Executors.newFixedThreadPool(3).asCoroutineDispatcher()
     }
 
-    suspend fun <S : Any> executeNetworkRequest(call: suspend () -> Response<S>): Source<S> {
+    suspend fun <S : Any> executeNetworkRequest(call: suspend () -> Response<S>): S {
         return withContext(threadDispatcher + job) {
             runBlocking {
-                try {
-                    val response = call()
-                    if (response.isSuccessful && response.body() != null) {
-                        Source.Success(response.body())
-                    } else {
-                        val jsonError = extractError(response.errorBody())
-                        handleServerError(jsonError, response.code())
-                    }
-                } catch (e: Exception) {
-                    handleException(e)
+                val response = call()
+                if (response.isSuccessful && response.body() != null) {
+                    return@runBlocking response.body() as S
                 }
+                if (response.errorBody() != null) {
+                    throw NetworkException(response.code(), response.errorBody()?.string())
+                }
+                throw Exception("Unknown error")
             }
         }
     }

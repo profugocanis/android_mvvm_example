@@ -15,22 +15,10 @@ class SearchMoviesState(context: Context) : BaseState(context) {
     var searchQuery by mutableStateOf("one")
 
     var isLoading by mutableStateOf(false)
-        private set
     val movies = mutableStateListOf<Movie>()
 
-    fun handleMovies(source: Source<MoviesSearchResponse>) {
-        when (source) {
-            is Source.Processing -> isLoading = true
-            is Source.Success -> {
-                movies.clear()
-                movies.addAll(source.data?.list ?: emptyList())
-                isLoading = false
-            }
-
-            is Source.Error -> {
-                isLoading = false
-                showError(source.exception)
-            }
-        }
+    fun setMovies(response: MoviesSearchResponse) {
+        this.movies.clear()
+        this.movies.addAll(response.list)
     }
 }
