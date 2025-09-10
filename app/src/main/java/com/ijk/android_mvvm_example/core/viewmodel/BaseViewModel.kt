@@ -6,13 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.ijk.android_mvvm_example.core.network.NetworkMonitor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import java.util.concurrent.Executors
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -44,14 +41,10 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 
     fun launchWithError(onError: (Exception) -> Unit, launch: suspend () -> Unit) {
         viewModelScope.launch {
-            withContext(threadDispatcher + job) {
-                try {
-                    launch()
-                } catch (exception: Exception) {
-                    withContext(Dispatchers.Main) {
-                        onError(handleError(exception))
-                    }
-                }
+            try {
+                launch()
+            } catch (exception: Exception) {
+                onError(handleError(exception))
             }
         }
     }
@@ -78,10 +71,5 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
             }
         }
         return exception
-    }
-
-    companion object {
-        private var job = Job()
-        private val threadDispatcher = Executors.newFixedThreadPool(3).asCoroutineDispatcher()
     }
 }

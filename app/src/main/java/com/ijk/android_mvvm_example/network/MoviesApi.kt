@@ -9,13 +9,12 @@ import retrofit2.http.Query
 
 interface MoviesApi {
 
-    @GET("/2")
+    @GET("/")
     suspend fun searchMovies(
         @Query(value = "s") text: String?,
         @Query(value = "y") year: String,
         @Query(value = "page") page: String,
         @Query(value = "apikey") apikey: String = BuildUtils.moviesApiKey,
-//    ): Response<MoviesSearchResponse>
     ): MoviesSearchResponse
 
     @GET("/")

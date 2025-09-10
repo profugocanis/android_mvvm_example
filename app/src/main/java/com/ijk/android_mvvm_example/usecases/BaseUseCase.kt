@@ -1,6 +1,6 @@
 package com.ijk.android_mvvm_example.usecases
 
-import com.ijk.android_mvvm_example.network.RemoteDataSource
+import com.ijk.android_mvvm_example.core.network.RemoteDataSource
 
 abstract class BaseUseCase {
 

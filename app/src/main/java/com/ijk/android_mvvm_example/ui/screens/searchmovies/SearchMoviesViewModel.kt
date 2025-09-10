@@ -13,7 +13,7 @@ class SearchMoviesViewModel(
     private val searchMoviesUseCase: SearchMoviesUseCase
 ) : BaseStateViewModel(application) {
 
-    val state: SearchMoviesState get() = uiState as SearchMoviesState
+    override val state: SearchMoviesState get() = uiState as SearchMoviesState
 
     private var page = 1
 
