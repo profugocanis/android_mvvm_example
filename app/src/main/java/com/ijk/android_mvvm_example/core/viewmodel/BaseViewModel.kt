@@ -39,7 +39,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         networkMonitor.onClear()
     }
 
-    fun launchWithError(onError: (Exception) -> Unit, launch: suspend () -> Unit) {
+    fun launchSafely(onError: (Exception) -> Unit, launch: suspend () -> Unit) {
         viewModelScope.launch {
             try {
                 launch()

@@ -33,7 +33,7 @@ class SearchMoviesViewModel(
 
     private fun search(query: String) {
         state.isLoading = true
-        launchWithError(
+        launchSafely(
             launch = {
                 val movies = searchMoviesUseCase(query, page)
                 state.setMovies(movies)

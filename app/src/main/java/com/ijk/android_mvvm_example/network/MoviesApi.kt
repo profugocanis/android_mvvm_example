@@ -21,5 +21,5 @@ interface MoviesApi {
     suspend fun getMovie(
         @Query(value = "i") imdbID: String?,
         @Query(value = "plot") plot: String?,
-    ): Response<Movie>
+    ): Movie
 }
