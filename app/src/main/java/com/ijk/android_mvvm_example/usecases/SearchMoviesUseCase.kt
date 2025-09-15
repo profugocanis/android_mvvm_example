@@ -8,7 +8,7 @@ class SearchMoviesUseCase(
 ) : BaseUseCase() {
 
     suspend operator fun invoke(searchText: String, page: Int): MoviesSearchResponse {
-        return remoteDataSource.onIo {
+        return onIo {
             api.searchMovies(
                 text = searchText,
                 year = "",
